@@ -26,8 +26,7 @@ namespace ClassRoomManagementSystemServer.Controllers
         public IEnumerable<Building> GetBuildingsWithDepartmentsAndClassrooms()
         {
             var buildingsWithDepartmentsAndClassrooms = _db.Buildings.ToList();
-              
-
+    
             return buildingsWithDepartmentsAndClassrooms;
         }
 
