@@ -11,5 +11,5 @@ public partial class Building
 
     public virtual ICollection<Classroom> Classrooms { get; set; } = new List<Classroom>();
 
-    public virtual Department? Department { get; set; }
+    public virtual ICollection<Department> Departments { get; set; } = new List<Department>();
 }

@@ -13,9 +13,9 @@ public partial class Classroom
 
     public TimeOnly BackoutHours { get; set; }
 
-    public string BuildingName { get; set; } = null!;
+    public string? BuildingName { get; set; }
 
-    public virtual Building BuildingNameNavigation { get; set; } = null!;
+    public virtual Building? BuildingNameNavigation { get; set; }
 
     public virtual ICollection<Equipment> Equipment { get; set; } = new List<Equipment>();
 

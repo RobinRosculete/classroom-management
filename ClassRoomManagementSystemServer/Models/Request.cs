@@ -11,5 +11,9 @@ public partial class Request
 
     public uint ClassroomId { get; set; }
 
+    public string? DepartmentName { get; set; }
+
     public virtual Classroom Classroom { get; set; } = null!;
+
+    public virtual Department? DepartmentNameNavigation { get; set; }
 }

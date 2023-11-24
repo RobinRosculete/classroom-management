@@ -15,9 +15,11 @@ public partial class Section
 
     public uint ClassroomId { get; set; }
 
+    public uint? TimeSlotId { get; set; }
+
     public virtual Classroom Classroom { get; set; } = null!;
 
     public virtual Course Course { get; set; } = null!;
 
-    public virtual ICollection<SectionTimeSlot> SectionTimeSlots { get; set; } = new List<SectionTimeSlot>();
+    public virtual TimeSlot? TimeSlot { get; set; }
 }

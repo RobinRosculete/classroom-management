@@ -11,9 +11,9 @@ public partial class Course
 
     public uint Credits { get; set; }
 
-    public uint DepartmentId { get; set; }
+    public string? DepartmentName { get; set; }
 
-    public virtual Department Department { get; set; } = null!;
+    public virtual Department? DepartmentNameNavigation { get; set; }
 
     public virtual ICollection<Equipment> Equipment { get; set; } = new List<Equipment>();
 
