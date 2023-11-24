@@ -8,6 +8,7 @@ import { UpdateRequestsComponent } from './update-requests/update-requests.compo
 import { RoomPropertiesComponent } from './room-properties/room-properties.component';
 import { NavmenuComponent } from './navmenu/navmenu.component';
 import { HomeComponent } from './home/home.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { HomeComponent } from './home/home.component';
     ClassroomRequestComponent,
     HomeComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })
