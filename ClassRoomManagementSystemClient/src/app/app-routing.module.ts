@@ -1,10 +1,22 @@
 import { NgModule } from '@angular/core';
+import { HomeComponent } from './home/home.component';
+import { ClassroomRequestComponent } from './classroom-request/classroom-request.component';
+import { RoomAssignmentsComponent } from './room-assignments/room-assignments.component';
+import { UpdateRequestsComponent } from './update-requests/update-requests.component';
+import { RoomPropertiesComponent } from './room-properties/room-properties.component';
+
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'classroom-request', component: ClassroomRequestComponent },
+  { path: 'room-assignments', component: RoomAssignmentsComponent },
+  { path: 'update-request', component: UpdateRequestsComponent },
+  { path: 'room-properties', component: RoomPropertiesComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
