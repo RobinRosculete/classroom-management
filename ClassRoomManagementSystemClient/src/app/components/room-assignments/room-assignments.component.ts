@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import {Buildings} from '../../models/buildings.interface'
 
 @Component({
   selector: 'app-room-assignments',
@@ -21,7 +22,3 @@ export class RoomAssignmentsComponent {
   }
 }
 
-interface Buildings {
-  buildingName: string;
-  numberClassrooms: number;
-}

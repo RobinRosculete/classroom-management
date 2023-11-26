@@ -15,8 +15,6 @@ optionsBuilder.UseMySql(builder.Configuration.GetConnectionString("DefaultConnec
 serverVersion));
 
 
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
