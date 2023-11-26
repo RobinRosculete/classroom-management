@@ -1,1 +1,40 @@
-<h1>Modify their requests !</h1>
+<html>
+  <head>
+    <!-- Other meta tags, title, etc. -->
+
+    <!-- Link your custom CSS file -->
+    <link rel="stylesheet" href="update-requests.component.css" />
+  </head>
+  <body>
+    <!-- Your table -->
+    <h1>View Requests</h1>
+
+    <table
+      class="table table-striped"
+      aria-labelledby="tableLabel"
+      *ngIf="requests.length"
+    >
+      <!-- Table header -->
+      <thead>
+        <tr>
+          <th>Request ID</th>
+          <th>Description</th>
+          <th>Classroom ID</th>
+          <th>Department Name</th>
+        </tr>
+      </thead>
+      <!-- Table body -->
+      <tbody>
+        <!-- Table rows -->
+        <tr *ngFor="let request of requests">
+          <td>{{ request.requestId }}</td>
+          <td>{{ request.descritption }}</td>
+          <td>{{ request.classroomId }}</td>
+          <td>{{ request.departmentName }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Your other content -->
+  </body>
+</html>

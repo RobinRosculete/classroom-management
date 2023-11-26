@@ -24,7 +24,7 @@ namespace ClassRoomManagementSystemServer.Controllers
 
 
         // GET: api/Classroom/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}", Name = "GetClassroom")]
         public string Get(int id)
         {
             return "value";
