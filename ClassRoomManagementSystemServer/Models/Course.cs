@@ -5,15 +5,13 @@ namespace ClassRoomManagementSystemServer.Models;
 
 public partial class Course
 {
-    public uint CourseId { get; set; }
+    public string CourseTitle { get; set; } = null!;
 
-    public string Title { get; set; } = null!;
+    public float? Credits { get; set; }
 
-    public uint Credits { get; set; }
+    public string DepartmentDepartmentName { get; set; } = null!;
 
-    public string? DepartmentName { get; set; }
-
-    public virtual Department? DepartmentNameNavigation { get; set; }
+    public virtual Department DepartmentDepartmentNameNavigation { get; set; } = null!;
 
     public virtual ICollection<Equipment> Equipment { get; set; } = new List<Equipment>();
 

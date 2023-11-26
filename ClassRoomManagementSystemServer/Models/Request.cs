@@ -5,15 +5,15 @@ namespace ClassRoomManagementSystemServer.Models;
 
 public partial class Request
 {
-    public uint RequestId { get; set; }
+    public int RequestId { get; set; }
 
-    public string? Descritption { get; set; }
+    public string Description { get; set; } = null!;
 
-    public uint ClassroomId { get; set; }
+    public string DepartmentDepartmentName { get; set; } = null!;
 
-    public string? DepartmentName { get; set; }
+    public int ClassroomClassroomId { get; set; }
 
-    public virtual Classroom Classroom { get; set; } = null!;
+    public virtual Classroom ClassroomClassroom { get; set; } = null!;
 
-    public virtual Department? DepartmentNameNavigation { get; set; }
+    public virtual Department DepartmentDepartmentNameNavigation { get; set; } = null!;
 }

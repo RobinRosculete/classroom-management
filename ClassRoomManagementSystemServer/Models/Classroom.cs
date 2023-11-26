@@ -5,17 +5,17 @@ namespace ClassRoomManagementSystemServer.Models;
 
 public partial class Classroom
 {
-    public uint ClassroomId { get; set; }
+    public int ClassroomId { get; set; }
 
-    public uint RoomNumber { get; set; }
+    public int RoomNum { get; set; }
 
-    public uint Capacity { get; set; }
+    public int Capacity { get; set; }
 
-    public TimeOnly BackoutHours { get; set; }
+    public TimeOnly? BlackoutHours { get; set; }
 
-    public string? BuildingName { get; set; }
+    public string DepartmentDepartmentName { get; set; } = null!;
 
-    public virtual Building? BuildingNameNavigation { get; set; }
+    public virtual Department DepartmentDepartmentNameNavigation { get; set; } = null!;
 
     public virtual ICollection<Equipment> Equipment { get; set; } = new List<Equipment>();
 

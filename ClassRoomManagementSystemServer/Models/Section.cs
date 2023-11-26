@@ -5,21 +5,23 @@ namespace ClassRoomManagementSystemServer.Models;
 
 public partial class Section
 {
-    public uint SectionId { get; set; }
+    public int SectionId { get; set; }
+
+    public string CourseTitle { get; set; } = null!;
+
+    public string Year { get; set; } = null!;
 
     public string Semester { get; set; } = null!;
 
-    public uint Year { get; set; }
+    public string CourseCourseTitle { get; set; } = null!;
 
-    public uint CourseId { get; set; }
+    public int TimeSlotTimeSlotId { get; set; }
 
-    public uint ClassroomId { get; set; }
+    public int ClassroomClassroomId { get; set; }
 
-    public uint? TimeSlotId { get; set; }
+    public virtual Classroom ClassroomClassroom { get; set; } = null!;
 
-    public virtual Classroom Classroom { get; set; } = null!;
+    public virtual Course CourseCourseTitleNavigation { get; set; } = null!;
 
-    public virtual Course Course { get; set; } = null!;
-
-    public virtual TimeSlot? TimeSlot { get; set; }
+    public virtual TimeSlot TimeSlotTimeSlot { get; set; } = null!;
 }

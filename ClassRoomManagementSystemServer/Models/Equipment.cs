@@ -5,15 +5,15 @@ namespace ClassRoomManagementSystemServer.Models;
 
 public partial class Equipment
 {
-    public uint EquipmentId { get; set; }
+    public int EquipmentId { get; set; }
 
     public string EquipmentType { get; set; } = null!;
 
-    public uint ClassroomId { get; set; }
+    public int ClassroomClassroomId { get; set; }
 
-    public uint CourseId { get; set; }
+    public string CourseCourseTitle { get; set; } = null!;
 
-    public virtual Classroom Classroom { get; set; } = null!;
+    public virtual Classroom ClassroomClassroom { get; set; } = null!;
 
-    public virtual Course Course { get; set; } = null!;
+    public virtual Course CourseCourseTitleNavigation { get; set; } = null!;
 }

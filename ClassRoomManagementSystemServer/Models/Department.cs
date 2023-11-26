@@ -9,9 +9,9 @@ public partial class Department
 
     public string BuildingName { get; set; } = null!;
 
-    public float? Budget { get; set; }
+    public uint? NumClassroom { get; set; }
 
-    public virtual Building BuildingNameNavigation { get; set; } = null!;
+    public virtual ICollection<Classroom> Classrooms { get; set; } = new List<Classroom>();
 
     public virtual ICollection<Course> Courses { get; set; } = new List<Course>();
 

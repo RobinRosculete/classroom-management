@@ -5,7 +5,7 @@ namespace ClassRoomManagementSystemServer.Models;
 
 public partial class TimeSlot
 {
-    public uint TimeSlotId { get; set; }
+    public int TimeSlotId { get; set; }
 
     public DateOnly Day { get; set; }
 
