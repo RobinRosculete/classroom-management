@@ -28,7 +28,6 @@ public partial class MydbContext : DbContext
     public virtual DbSet<Section> Sections { get; set; }
 
     public virtual DbSet<TimeSlot> TimeSlots { get; set; }
-
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         IConfigurationBuilder builder = new ConfigurationBuilder().AddJsonFile("appsettings.Development.json");
@@ -41,7 +40,6 @@ public partial class MydbContext : DbContext
         optionsBuilder.UseMySql(connectionString, serverVersion);
 
     }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder
