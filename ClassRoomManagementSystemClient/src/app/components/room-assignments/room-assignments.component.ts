@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Buildings } from '../../models/buildings.interface';
+import { Department } from '../../models/department.interface';
 
 @Component({
   selector: 'app-room-assignments',
@@ -9,11 +9,11 @@ import { Buildings } from '../../models/buildings.interface';
   styleUrls: ['./room-assignments.component.css'],
 })
 export class RoomAssignmentsComponent {
-  buildings: Buildings[] = [];
+  department: Department[] = [];
   constructor(http: HttpClient) {
-    http.get<Buildings[]>(environment.apiUrl + '/Department').subscribe({
+    http.get<Department[]>(environment.apiUrl + '/Department').subscribe({
       next: (result) => {
-        this.buildings = result;
+        this.department = result;
       },
       error: (error) => {
         console.error(error);

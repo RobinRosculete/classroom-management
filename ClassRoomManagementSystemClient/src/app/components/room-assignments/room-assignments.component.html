@@ -12,11 +12,12 @@
     <table
       class="table table-striped"
       aria-labelledby="tableLabel"
-      *ngIf="buildings.length"
+      *ngIf="department.length"
     >
       <!-- Table header -->
       <thead>
         <tr>
+          <th>Department Name</th>
           <th>Building Name</th>
           <th>Number of Classrooms</th>
         </tr>
@@ -24,9 +25,10 @@
       <!-- Table body -->
       <tbody>
         <!-- Table rows -->
-        <tr *ngFor="let building of buildings">
-          <td>{{ building.buildingName }}</td>
-          <td>{{ building.numberClassrooms }}</td>
+        <tr *ngFor="let department of department">
+          <td>{{ department.departmentName }}</td>
+          <td>{{ department.buildingName }}</td>
+          <td>{{ department.numClassroom }}</td>
         </tr>
       </tbody>
     </table>
