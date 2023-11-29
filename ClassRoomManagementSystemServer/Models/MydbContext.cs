@@ -21,6 +21,8 @@ public partial class MydbContext : DbContext
 
     public virtual DbSet<Department> Departments { get; set; }
 
+    public virtual DbSet<Efmigrationshistory> Efmigrationshistories { get; set; }
+
     public virtual DbSet<Equipment> Equipment { get; set; }
 
     public virtual DbSet<Request> Requests { get; set; }
@@ -28,6 +30,7 @@ public partial class MydbContext : DbContext
     public virtual DbSet<Section> Sections { get; set; }
 
     public virtual DbSet<TimeSlot> TimeSlots { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         IConfigurationBuilder builder = new ConfigurationBuilder().AddJsonFile("appsettings.Development.json");
@@ -40,6 +43,7 @@ public partial class MydbContext : DbContext
         optionsBuilder.UseMySql(connectionString, serverVersion);
 
     }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder
@@ -55,9 +59,12 @@ public partial class MydbContext : DbContext
             entity.HasIndex(e => e.DepartmentDepartmentName, "fk_Classroom_Department1_idx");
 
             entity.Property(e => e.ClassroomId).HasColumnName("classroom_id");
-            entity.Property(e => e.BlackoutHours)
+            entity.Property(e => e.BlackoutHoursEnd)
                 .HasColumnType("time")
-                .HasColumnName("blackout_hours");
+                .HasColumnName("blackout_hours_end");
+            entity.Property(e => e.BlackoutHoursStart)
+                .HasColumnType("time")
+                .HasColumnName("blackout_hours_start");
             entity.Property(e => e.Capacity).HasColumnName("capacity");
             entity.Property(e => e.DepartmentDepartmentName)
                 .HasMaxLength(45)
@@ -98,6 +105,8 @@ public partial class MydbContext : DbContext
 
             entity.ToTable("department");
 
+            entity.HasIndex(e => e.BuildingName, "building_name_UNIQUE").IsUnique();
+
             entity.Property(e => e.DepartmentName)
                 .HasMaxLength(45)
                 .HasColumnName("department_name");
@@ -105,6 +114,19 @@ public partial class MydbContext : DbContext
                 .HasMaxLength(45)
                 .HasColumnName("building_name");
             entity.Property(e => e.NumClassroom).HasColumnName("num_classroom");
+        });
+
+        modelBuilder.Entity<Efmigrationshistory>(entity =>
+        {
+            entity.HasKey(e => e.MigrationId).HasName("PRIMARY");
+
+            entity
+                .ToTable("__efmigrationshistory")
+                .HasCharSet("utf8mb4")
+                .UseCollation("utf8mb4_0900_ai_ci");
+
+            entity.Property(e => e.MigrationId).HasMaxLength(150);
+            entity.Property(e => e.ProductVersion).HasMaxLength(32);
         });
 
         modelBuilder.Entity<Equipment>(entity =>

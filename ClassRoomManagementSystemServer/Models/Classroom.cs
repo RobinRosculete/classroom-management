@@ -11,7 +11,9 @@ public partial class Classroom
 
     public int Capacity { get; set; }
 
-    public TimeOnly? BlackoutHours { get; set; }
+    public TimeOnly BlackoutHoursStart { get; set; }
+
+    public TimeOnly BlackoutHoursEnd { get; set; }
 
     public string DepartmentDepartmentName { get; set; } = null!;
 
