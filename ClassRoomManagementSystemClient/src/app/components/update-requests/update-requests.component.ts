@@ -11,7 +11,7 @@ import { Requests } from 'src/app/models/requests.interface';
 export class UpdateRequestsComponent {
   requests: Requests[] = [];
   constructor(http: HttpClient) {
-    http.get<Requests[]>(environment.apiUrl + '/Requests').subscribe({
+    http.get<Requests[]>(environment.apiUrl + '/Request').subscribe({
       next: (result) => {
         this.requests = result;
       },

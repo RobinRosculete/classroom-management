@@ -11,7 +11,7 @@ import { Buildings } from '../../models/buildings.interface';
 export class RoomAssignmentsComponent {
   buildings: Buildings[] = [];
   constructor(http: HttpClient) {
-    http.get<Buildings[]>(environment.apiUrl + '/Building').subscribe({
+    http.get<Buildings[]>(environment.apiUrl + '/Department').subscribe({
       next: (result) => {
         this.buildings = result;
       },
