@@ -29,6 +29,8 @@ namespace ClassRoomManagementSystemServer.Controllers
                                                RoomNum = c.RoomNum,
                                                Capacity = c.Capacity,
                                                DepartmentName = c.DepartmentName,
+                                               BlackoutHoursStart = c.BlackoutHoursStart,
+                                               BlackoutHoursEnd = c.BlackoutHoursEnd,
                                                EquipmentType = ce.EquipmentType
                                            }).ToList();
 

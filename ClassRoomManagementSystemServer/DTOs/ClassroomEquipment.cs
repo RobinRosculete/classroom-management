@@ -6,6 +6,10 @@ namespace ClassRoomManagementSystemServer.DTO;
 
         public int Capacity { get; set; }
 
+        public TimeOnly BlackoutHoursStart { get; set; }
+
+         public TimeOnly BlackoutHoursEnd { get; set; }
+
         public string DepartmentName { get; set; } = null!;
 
         public string EquipmentType { get; set; } = null!;
