@@ -1,0 +1,76 @@
+/* styles.css */
+
+/* Table styles */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Table header styles */
+.table th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+  text-align: left;
+  padding: 12px;
+  border: 1px solid #ddd;
+}
+
+/* Table body styles */
+.table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+}
+
+/* Alternating row colors */
+.table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Hover effect for rows */
+.table tbody tr:hover {
+  background-color: #f1f1f1;
+  transition: background-color 0.3s ease;
+}
+
+/* Responsive table */
+@media screen and (max-width: 600px) {
+  .table {
+    overflow-x: auto;
+    display: block;
+  }
+  .table thead,
+  .table tbody,
+  .table th,
+  .table td,
+  .table tr {
+    display: block;
+  }
+  .table thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  .table tr {
+    border: 1px solid #ccc;
+  }
+  .table td {
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+    white-space: normal;
+    text-align: left;
+  }
+  .table td:before {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    content: attr(data-label);
+    font-weight: bold;
+  }
+}

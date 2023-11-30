@@ -1,1 +1,35 @@
 <h1>View/change room properties, such as blackout hours and equipment !</h1>
+<html>
+  <head> </head>
+  <body>
+    <table
+      class="table table-striped"
+      aria-labelledby="tableLabel"
+      *ngIf="classromms.length"
+    >
+      <!-- Table header -->
+      <thead>
+        <tr>
+          <th>Room Number</th>
+          <th>Capacity</th>
+          <th>Start of Blackout Hours</th>
+          <th>End of Blackout Hours</th>
+          <th>Department</th>
+        </tr>
+      </thead>
+      <!-- Table body -->
+      <tbody>
+        <!-- Table rows -->
+        <tr *ngFor="let classromm of classromms">
+          <td>{{ classromm.roomNum }}</td>
+          <td>{{ classromm.capacity }}</td>
+          <td>{{ classromm.blackoutHoursStart }}</td>
+          <td>{{ classromm.blackoutHoursEnd }}</td>
+          <td>{{ classromm.departmentDepartmentName }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Your other content -->
+  </body>
+</html>

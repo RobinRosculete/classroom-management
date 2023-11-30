@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Requests } from 'src/app/models/requests.interface';
+import { Request } from 'src/app/models/requests.interface';
 
 @Component({
   selector: 'app-update-requests',
@@ -9,9 +9,9 @@ import { Requests } from 'src/app/models/requests.interface';
   styleUrls: ['./update-requests.component.css'],
 })
 export class UpdateRequestsComponent {
-  requests: Requests[] = [];
+  requests: Request[] = [];
   constructor(http: HttpClient) {
-    http.get<Requests[]>(environment.apiUrl + '/Request').subscribe({
+    http.get<Request[]>(environment.apiUrl + '/Request').subscribe({
       next: (result) => {
         this.requests = result;
       },
