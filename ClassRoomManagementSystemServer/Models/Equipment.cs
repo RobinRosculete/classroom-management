@@ -9,11 +9,11 @@ public partial class Equipment
 
     public string EquipmentType { get; set; } = null!;
 
-    public int ClassroomClassroomId { get; set; }
+    public int ClassroomId { get; set; }
 
-    public string CourseCourseTitle { get; set; } = null!;
+    public string? CourseTitle { get; set; }
 
-    public virtual Classroom ClassroomClassroom { get; set; } = null!;
+    public virtual Classroom Classroom { get; set; } = null!;
 
-    public virtual Course CourseCourseTitleNavigation { get; set; } = null!;
+    public virtual Course? CourseTitleNavigation { get; set; }
 }

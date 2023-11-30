@@ -1,5 +1,4 @@
-﻿
-using ClassRoomManagementSystemServer.Models;
+﻿using ClassRoomManagementSystemServer.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

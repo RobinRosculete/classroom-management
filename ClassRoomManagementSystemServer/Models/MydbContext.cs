@@ -21,7 +21,7 @@ public partial class MydbContext : DbContext
 
     public virtual DbSet<Department> Departments { get; set; }
 
-    public virtual DbSet<Efmigrationshistory> Efmigrationshistories { get; set; }
+ 
 
     public virtual DbSet<Equipment> Equipment { get; set; }
 
@@ -44,6 +44,7 @@ public partial class MydbContext : DbContext
 
     }
 
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder
@@ -56,7 +57,7 @@ public partial class MydbContext : DbContext
 
             entity.ToTable("classroom");
 
-            entity.HasIndex(e => e.DepartmentDepartmentName, "fk_Classroom_Department1_idx");
+            entity.HasIndex(e => e.DepartmentName, "fk_Classroom_Department1_idx");
 
             entity.Property(e => e.ClassroomId).HasColumnName("classroom_id");
             entity.Property(e => e.BlackoutHoursEnd)
@@ -66,13 +67,13 @@ public partial class MydbContext : DbContext
                 .HasColumnType("time")
                 .HasColumnName("blackout_hours_start");
             entity.Property(e => e.Capacity).HasColumnName("capacity");
-            entity.Property(e => e.DepartmentDepartmentName)
+            entity.Property(e => e.DepartmentName)
                 .HasMaxLength(45)
-                .HasColumnName("Department_department_name");
+                .HasColumnName("department_name");
             entity.Property(e => e.RoomNum).HasColumnName("room_num");
 
-            entity.HasOne(d => d.DepartmentDepartmentNameNavigation).WithMany(p => p.Classrooms)
-                .HasForeignKey(d => d.DepartmentDepartmentName)
+            entity.HasOne(d => d.DepartmentNameNavigation).WithMany(p => p.Classrooms)
+                .HasForeignKey(d => d.DepartmentName)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_Classroom_Department1");
         });
@@ -83,18 +84,18 @@ public partial class MydbContext : DbContext
 
             entity.ToTable("course");
 
-            entity.HasIndex(e => e.DepartmentDepartmentName, "fk_Course_Department1_idx");
+            entity.HasIndex(e => e.DepartmentName, "fk_Course_Department1_idx");
 
             entity.Property(e => e.CourseTitle)
                 .HasMaxLength(10)
                 .HasColumnName("course_title");
             entity.Property(e => e.Credits).HasColumnName("credits");
-            entity.Property(e => e.DepartmentDepartmentName)
+            entity.Property(e => e.DepartmentName)
                 .HasMaxLength(45)
-                .HasColumnName("Department_department_name");
+                .HasColumnName("department_name");
 
-            entity.HasOne(d => d.DepartmentDepartmentNameNavigation).WithMany(p => p.Courses)
-                .HasForeignKey(d => d.DepartmentDepartmentName)
+            entity.HasOne(d => d.DepartmentNameNavigation).WithMany(p => p.Courses)
+                .HasForeignKey(d => d.DepartmentName)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_Course_Department1");
         });
@@ -116,18 +117,7 @@ public partial class MydbContext : DbContext
             entity.Property(e => e.NumClassroom).HasColumnName("num_classroom");
         });
 
-        modelBuilder.Entity<Efmigrationshistory>(entity =>
-        {
-            entity.HasKey(e => e.MigrationId).HasName("PRIMARY");
-
-            entity
-                .ToTable("__efmigrationshistory")
-                .HasCharSet("utf8mb4")
-                .UseCollation("utf8mb4_0900_ai_ci");
-
-            entity.Property(e => e.MigrationId).HasMaxLength(150);
-            entity.Property(e => e.ProductVersion).HasMaxLength(32);
-        });
+    
 
         modelBuilder.Entity<Equipment>(entity =>
         {
@@ -135,27 +125,26 @@ public partial class MydbContext : DbContext
 
             entity.ToTable("equipment");
 
-            entity.HasIndex(e => e.ClassroomClassroomId, "fk_Equipment_Classroom1_idx");
+            entity.HasIndex(e => e.ClassroomId, "fk_Equipment_Classroom1_idx");
 
-            entity.HasIndex(e => e.CourseCourseTitle, "fk_Equipment_Course1_idx");
+            entity.HasIndex(e => e.CourseTitle, "fk_Equipment_Course1_idx");
 
             entity.Property(e => e.EquipmentId).HasColumnName("equipment_id");
-            entity.Property(e => e.ClassroomClassroomId).HasColumnName("Classroom_classroom_id");
-            entity.Property(e => e.CourseCourseTitle)
+            entity.Property(e => e.ClassroomId).HasColumnName("classroom_id");
+            entity.Property(e => e.CourseTitle)
                 .HasMaxLength(10)
-                .HasColumnName("Course_course_title");
+                .HasColumnName("course_title");
             entity.Property(e => e.EquipmentType)
                 .HasMaxLength(45)
                 .HasColumnName("equipment_type");
 
-            entity.HasOne(d => d.ClassroomClassroom).WithMany(p => p.Equipment)
-                .HasForeignKey(d => d.ClassroomClassroomId)
+            entity.HasOne(d => d.Classroom).WithMany(p => p.Equipment)
+                .HasForeignKey(d => d.ClassroomId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_Equipment_Classroom1");
 
-            entity.HasOne(d => d.CourseCourseTitleNavigation).WithMany(p => p.Equipment)
-                .HasForeignKey(d => d.CourseCourseTitle)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+            entity.HasOne(d => d.CourseTitleNavigation).WithMany(p => p.Equipment)
+                .HasForeignKey(d => d.CourseTitle)
                 .HasConstraintName("fk_Equipment_Course1");
         });
 
@@ -165,26 +154,26 @@ public partial class MydbContext : DbContext
 
             entity.ToTable("request");
 
-            entity.HasIndex(e => e.ClassroomClassroomId, "fk_Request_Classroom1_idx");
+            entity.HasIndex(e => e.ClassroomId, "fk_Request_Classroom1_idx");
 
-            entity.HasIndex(e => e.DepartmentDepartmentName, "fk_Request_Department_idx");
+            entity.HasIndex(e => e.DepartmentName, "fk_Request_Department_idx");
 
             entity.Property(e => e.RequestId).HasColumnName("request_id");
-            entity.Property(e => e.ClassroomClassroomId).HasColumnName("Classroom_classroom_id");
-            entity.Property(e => e.DepartmentDepartmentName)
+            entity.Property(e => e.ClassroomId).HasColumnName("classroom_id");
+            entity.Property(e => e.DepartmentName)
                 .HasMaxLength(45)
-                .HasColumnName("Department_department_name");
+                .HasColumnName("department_name");
             entity.Property(e => e.Description)
                 .HasColumnType("text")
                 .HasColumnName("description");
 
-            entity.HasOne(d => d.ClassroomClassroom).WithMany(p => p.Requests)
-                .HasForeignKey(d => d.ClassroomClassroomId)
+            entity.HasOne(d => d.Classroom).WithMany(p => p.Requests)
+                .HasForeignKey(d => d.ClassroomId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_Request_Classroom1");
 
-            entity.HasOne(d => d.DepartmentDepartmentNameNavigation).WithMany(p => p.Requests)
-                .HasForeignKey(d => d.DepartmentDepartmentName)
+            entity.HasOne(d => d.DepartmentNameNavigation).WithMany(p => p.Requests)
+                .HasForeignKey(d => d.DepartmentName)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_Request_Department");
         });
@@ -197,11 +186,11 @@ public partial class MydbContext : DbContext
 
             entity.ToTable("section");
 
-            entity.HasIndex(e => e.ClassroomClassroomId, "fk_Section_Classroom1_idx");
+            entity.HasIndex(e => e.ClassroomId, "fk_Section_Classroom1_idx");
 
             entity.HasIndex(e => e.CourseCourseTitle, "fk_Section_Course1_idx");
 
-            entity.HasIndex(e => e.TimeSlotTimeSlotId, "fk_Section_Time_Slot1_idx");
+            entity.HasIndex(e => e.TimeSlotId, "fk_Section_Time_Slot1_idx");
 
             entity.Property(e => e.SectionId)
                 .ValueGeneratedOnAdd()
@@ -218,11 +207,11 @@ public partial class MydbContext : DbContext
             entity.Property(e => e.CourseCourseTitle)
                 .HasMaxLength(10)
                 .HasColumnName("Course_course_title");
-            entity.Property(e => e.ClassroomClassroomId).HasColumnName("Classroom_classroom_id");
-            entity.Property(e => e.TimeSlotTimeSlotId).HasColumnName("Time_Slot_time_slot_id");
+            entity.Property(e => e.ClassroomId).HasColumnName("classroom_id");
+            entity.Property(e => e.TimeSlotId).HasColumnName("time_slot_id");
 
-            entity.HasOne(d => d.ClassroomClassroom).WithMany(p => p.Sections)
-                .HasForeignKey(d => d.ClassroomClassroomId)
+            entity.HasOne(d => d.Classroom).WithMany(p => p.Sections)
+                .HasForeignKey(d => d.ClassroomId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_Section_Classroom1");
 
@@ -231,8 +220,8 @@ public partial class MydbContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_Section_Course1");
 
-            entity.HasOne(d => d.TimeSlotTimeSlot).WithMany(p => p.Sections)
-                .HasForeignKey(d => d.TimeSlotTimeSlotId)
+            entity.HasOne(d => d.TimeSlot).WithMany(p => p.Sections)
+                .HasForeignKey(d => d.TimeSlotId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_Section_Time_Slot1");
         });

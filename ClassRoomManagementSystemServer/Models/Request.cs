@@ -9,11 +9,11 @@ public partial class Request
 
     public string Description { get; set; } = null!;
 
-    public string DepartmentDepartmentName { get; set; } = null!;
+    public string DepartmentName { get; set; } = null!;
 
-    public int ClassroomClassroomId { get; set; }
+    public int ClassroomId { get; set; }
 
-    public virtual Classroom ClassroomClassroom { get; set; } = null!;
+    public virtual Classroom Classroom { get; set; } = null!;
 
-    public virtual Department DepartmentDepartmentNameNavigation { get; set; } = null!;
+    public virtual Department DepartmentNameNavigation { get; set; } = null!;
 }

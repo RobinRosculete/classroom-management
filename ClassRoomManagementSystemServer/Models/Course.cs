@@ -9,9 +9,9 @@ public partial class Course
 
     public float? Credits { get; set; }
 
-    public string DepartmentDepartmentName { get; set; } = null!;
+    public string DepartmentName { get; set; } = null!;
 
-    public virtual Department DepartmentDepartmentNameNavigation { get; set; } = null!;
+    public virtual Department DepartmentNameNavigation { get; set; } = null!;
 
     public virtual ICollection<Equipment> Equipment { get; set; } = new List<Equipment>();
 

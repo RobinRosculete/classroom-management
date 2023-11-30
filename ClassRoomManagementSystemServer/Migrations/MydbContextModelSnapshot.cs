@@ -29,19 +29,23 @@ namespace ClassRoomManagementSystemServer.Migrations
                         .HasColumnType("int")
                         .HasColumnName("classroom_id");
 
-                    b.Property<TimeOnly?>("BlackoutHours")
+                    b.Property<TimeOnly>("BlackoutHoursEnd")
                         .HasColumnType("time")
-                        .HasColumnName("blackout_hours");
+                        .HasColumnName("blackout_hours_end");
+
+                    b.Property<TimeOnly>("BlackoutHoursStart")
+                        .HasColumnType("time")
+                        .HasColumnName("blackout_hours_start");
 
                     b.Property<int>("Capacity")
                         .HasColumnType("int")
                         .HasColumnName("capacity");
 
-                    b.Property<string>("DepartmentDepartmentName")
+                    b.Property<string>("DepartmentName")
                         .IsRequired()
                         .HasMaxLength(45)
                         .HasColumnType("varchar(45)")
-                        .HasColumnName("Department_department_name");
+                        .HasColumnName("department_name");
 
                     b.Property<int>("RoomNum")
                         .HasColumnType("int")
@@ -50,7 +54,7 @@ namespace ClassRoomManagementSystemServer.Migrations
                     b.HasKey("ClassroomId")
                         .HasName("PRIMARY");
 
-                    b.HasIndex(new[] { "DepartmentDepartmentName" }, "fk_Classroom_Department1_idx");
+                    b.HasIndex(new[] { "DepartmentName" }, "fk_Classroom_Department1_idx");
 
                     b.ToTable("classroom", (string)null);
                 });
@@ -66,16 +70,16 @@ namespace ClassRoomManagementSystemServer.Migrations
                         .HasColumnType("float")
                         .HasColumnName("credits");
 
-                    b.Property<string>("DepartmentDepartmentName")
+                    b.Property<string>("DepartmentName")
                         .IsRequired()
                         .HasMaxLength(45)
                         .HasColumnType("varchar(45)")
-                        .HasColumnName("Department_department_name");
+                        .HasColumnName("department_name");
 
                     b.HasKey("CourseTitle")
                         .HasName("PRIMARY");
 
-                    b.HasIndex(new[] { "DepartmentDepartmentName" }, "fk_Course_Department1_idx");
+                    b.HasIndex(new[] { "DepartmentName" }, "fk_Course_Department1_idx");
 
                     b.ToTable("course", (string)null);
                 });
@@ -100,7 +104,30 @@ namespace ClassRoomManagementSystemServer.Migrations
                     b.HasKey("DepartmentName")
                         .HasName("PRIMARY");
 
+                    b.HasIndex(new[] { "BuildingName" }, "building_name_UNIQUE")
+                        .IsUnique();
+
                     b.ToTable("department", (string)null);
+                });
+
+            modelBuilder.Entity("ClassRoomManagementSystemServer.Models.Efmigrationshistory", b =>
+                {
+                    b.Property<string>("MigrationId")
+                        .HasMaxLength(150)
+                        .HasColumnType("varchar(150)");
+
+                    b.Property<string>("ProductVersion")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
+
+                    b.HasKey("MigrationId")
+                        .HasName("PRIMARY");
+
+                    b.ToTable("__efmigrationshistory", (string)null);
+
+                    MySqlEntityTypeBuilderExtensions.HasCharSet(b, "utf8mb4");
+                    MySqlEntityTypeBuilderExtensions.UseCollation(b, "utf8mb4_0900_ai_ci");
                 });
 
             modelBuilder.Entity("ClassRoomManagementSystemServer.Models.Equipment", b =>
@@ -110,15 +137,14 @@ namespace ClassRoomManagementSystemServer.Migrations
                         .HasColumnType("int")
                         .HasColumnName("equipment_id");
 
-                    b.Property<int>("ClassroomClassroomId")
+                    b.Property<int>("ClassroomId")
                         .HasColumnType("int")
-                        .HasColumnName("Classroom_classroom_id");
+                        .HasColumnName("classroom_id");
 
-                    b.Property<string>("CourseCourseTitle")
-                        .IsRequired()
+                    b.Property<string>("CourseTitle")
                         .HasMaxLength(10)
                         .HasColumnType("varchar(10)")
-                        .HasColumnName("Course_course_title");
+                        .HasColumnName("course_title");
 
                     b.Property<string>("EquipmentType")
                         .IsRequired()
@@ -129,9 +155,9 @@ namespace ClassRoomManagementSystemServer.Migrations
                     b.HasKey("EquipmentId")
                         .HasName("PRIMARY");
 
-                    b.HasIndex(new[] { "ClassroomClassroomId" }, "fk_Equipment_Classroom1_idx");
+                    b.HasIndex(new[] { "ClassroomId" }, "fk_Equipment_Classroom1_idx");
 
-                    b.HasIndex(new[] { "CourseCourseTitle" }, "fk_Equipment_Course1_idx");
+                    b.HasIndex(new[] { "CourseTitle" }, "fk_Equipment_Course1_idx");
 
                     b.ToTable("equipment", (string)null);
                 });
@@ -143,15 +169,15 @@ namespace ClassRoomManagementSystemServer.Migrations
                         .HasColumnType("int")
                         .HasColumnName("request_id");
 
-                    b.Property<int>("ClassroomClassroomId")
+                    b.Property<int>("ClassroomId")
                         .HasColumnType("int")
-                        .HasColumnName("Classroom_classroom_id");
+                        .HasColumnName("classroom_id");
 
-                    b.Property<string>("DepartmentDepartmentName")
+                    b.Property<string>("DepartmentName")
                         .IsRequired()
                         .HasMaxLength(45)
                         .HasColumnType("varchar(45)")
-                        .HasColumnName("Department_department_name");
+                        .HasColumnName("department_name");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -161,9 +187,9 @@ namespace ClassRoomManagementSystemServer.Migrations
                     b.HasKey("RequestId")
                         .HasName("PRIMARY");
 
-                    b.HasIndex(new[] { "ClassroomClassroomId" }, "fk_Request_Classroom1_idx");
+                    b.HasIndex(new[] { "ClassroomId" }, "fk_Request_Classroom1_idx");
 
-                    b.HasIndex(new[] { "DepartmentDepartmentName" }, "fk_Request_Department_idx");
+                    b.HasIndex(new[] { "DepartmentName" }, "fk_Request_Department_idx");
 
                     b.ToTable("request", (string)null);
                 });
@@ -195,23 +221,23 @@ namespace ClassRoomManagementSystemServer.Migrations
                         .HasColumnType("varchar(10)")
                         .HasColumnName("Course_course_title");
 
-                    b.Property<int>("ClassroomClassroomId")
+                    b.Property<int>("ClassroomId")
                         .HasColumnType("int")
-                        .HasColumnName("Classroom_classroom_id");
+                        .HasColumnName("classroom_id");
 
-                    b.Property<int>("TimeSlotTimeSlotId")
+                    b.Property<int>("TimeSlotId")
                         .HasColumnType("int")
-                        .HasColumnName("Time_Slot_time_slot_id");
+                        .HasColumnName("time_slot_id");
 
                     b.HasKey("SectionId", "CourseTitle", "Semester", "Year", "CourseCourseTitle")
                         .HasName("PRIMARY")
                         .HasAnnotation("MySql:IndexPrefixLength", new[] { 0, 0, 0, 0, 0 });
 
-                    b.HasIndex(new[] { "ClassroomClassroomId" }, "fk_Section_Classroom1_idx");
+                    b.HasIndex(new[] { "ClassroomId" }, "fk_Section_Classroom1_idx");
 
                     b.HasIndex(new[] { "CourseCourseTitle" }, "fk_Section_Course1_idx");
 
-                    b.HasIndex(new[] { "TimeSlotTimeSlotId" }, "fk_Section_Time_Slot1_idx");
+                    b.HasIndex(new[] { "TimeSlotId" }, "fk_Section_Time_Slot1_idx");
 
                     b.ToTable("section", (string)null);
                 });
@@ -243,69 +269,68 @@ namespace ClassRoomManagementSystemServer.Migrations
 
             modelBuilder.Entity("ClassRoomManagementSystemServer.Models.Classroom", b =>
                 {
-                    b.HasOne("ClassRoomManagementSystemServer.Models.Department", "DepartmentDepartmentNameNavigation")
+                    b.HasOne("ClassRoomManagementSystemServer.Models.Department", "DepartmentNameNavigation")
                         .WithMany("Classrooms")
-                        .HasForeignKey("DepartmentDepartmentName")
+                        .HasForeignKey("DepartmentName")
                         .IsRequired()
                         .HasConstraintName("fk_Classroom_Department1");
 
-                    b.Navigation("DepartmentDepartmentNameNavigation");
+                    b.Navigation("DepartmentNameNavigation");
                 });
 
             modelBuilder.Entity("ClassRoomManagementSystemServer.Models.Course", b =>
                 {
-                    b.HasOne("ClassRoomManagementSystemServer.Models.Department", "DepartmentDepartmentNameNavigation")
+                    b.HasOne("ClassRoomManagementSystemServer.Models.Department", "DepartmentNameNavigation")
                         .WithMany("Courses")
-                        .HasForeignKey("DepartmentDepartmentName")
+                        .HasForeignKey("DepartmentName")
                         .IsRequired()
                         .HasConstraintName("fk_Course_Department1");
 
-                    b.Navigation("DepartmentDepartmentNameNavigation");
+                    b.Navigation("DepartmentNameNavigation");
                 });
 
             modelBuilder.Entity("ClassRoomManagementSystemServer.Models.Equipment", b =>
                 {
-                    b.HasOne("ClassRoomManagementSystemServer.Models.Classroom", "ClassroomClassroom")
+                    b.HasOne("ClassRoomManagementSystemServer.Models.Classroom", "Classroom")
                         .WithMany("Equipment")
-                        .HasForeignKey("ClassroomClassroomId")
+                        .HasForeignKey("ClassroomId")
                         .IsRequired()
                         .HasConstraintName("fk_Equipment_Classroom1");
 
-                    b.HasOne("ClassRoomManagementSystemServer.Models.Course", "CourseCourseTitleNavigation")
+                    b.HasOne("ClassRoomManagementSystemServer.Models.Course", "CourseTitleNavigation")
                         .WithMany("Equipment")
-                        .HasForeignKey("CourseCourseTitle")
-                        .IsRequired()
+                        .HasForeignKey("CourseTitle")
                         .HasConstraintName("fk_Equipment_Course1");
 
-                    b.Navigation("ClassroomClassroom");
+                    b.Navigation("Classroom");
 
-                    b.Navigation("CourseCourseTitleNavigation");
+                    b.Navigation("CourseTitleNavigation");
                 });
 
             modelBuilder.Entity("ClassRoomManagementSystemServer.Models.Request", b =>
                 {
-                    b.HasOne("ClassRoomManagementSystemServer.Models.Classroom", "ClassroomClassroom")
+                    b.HasOne("ClassRoomManagementSystemServer.Models.Classroom", "Classroom")
                         .WithMany("Requests")
-                        .HasForeignKey("ClassroomClassroomId")
+                        .HasForeignKey("ClassroomId")
                         .IsRequired()
                         .HasConstraintName("fk_Request_Classroom1");
 
-                    b.HasOne("ClassRoomManagementSystemServer.Models.Department", "DepartmentDepartmentNameNavigation")
+                    b.HasOne("ClassRoomManagementSystemServer.Models.Department", "DepartmentNameNavigation")
                         .WithMany("Requests")
-                        .HasForeignKey("DepartmentDepartmentName")
+                        .HasForeignKey("DepartmentName")
                         .IsRequired()
                         .HasConstraintName("fk_Request_Department");
 
-                    b.Navigation("ClassroomClassroom");
+                    b.Navigation("Classroom");
 
-                    b.Navigation("DepartmentDepartmentNameNavigation");
+                    b.Navigation("DepartmentNameNavigation");
                 });
 
             modelBuilder.Entity("ClassRoomManagementSystemServer.Models.Section", b =>
                 {
-                    b.HasOne("ClassRoomManagementSystemServer.Models.Classroom", "ClassroomClassroom")
+                    b.HasOne("ClassRoomManagementSystemServer.Models.Classroom", "Classroom")
                         .WithMany("Sections")
-                        .HasForeignKey("ClassroomClassroomId")
+                        .HasForeignKey("ClassroomId")
                         .IsRequired()
                         .HasConstraintName("fk_Section_Classroom1");
 
@@ -315,17 +340,17 @@ namespace ClassRoomManagementSystemServer.Migrations
                         .IsRequired()
                         .HasConstraintName("fk_Section_Course1");
 
-                    b.HasOne("ClassRoomManagementSystemServer.Models.TimeSlot", "TimeSlotTimeSlot")
+                    b.HasOne("ClassRoomManagementSystemServer.Models.TimeSlot", "TimeSlot")
                         .WithMany("Sections")
-                        .HasForeignKey("TimeSlotTimeSlotId")
+                        .HasForeignKey("TimeSlotId")
                         .IsRequired()
                         .HasConstraintName("fk_Section_Time_Slot1");
 
-                    b.Navigation("ClassroomClassroom");
+                    b.Navigation("Classroom");
 
                     b.Navigation("CourseCourseTitleNavigation");
 
-                    b.Navigation("TimeSlotTimeSlot");
+                    b.Navigation("TimeSlot");
                 });
 
             modelBuilder.Entity("ClassRoomManagementSystemServer.Models.Classroom", b =>
