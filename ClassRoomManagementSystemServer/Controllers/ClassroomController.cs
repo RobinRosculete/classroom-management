@@ -18,9 +18,10 @@ namespace ClassRoomManagementSystemServer.Controllers
             _db = db;
         }
 
+
         // GET: api/values
         [HttpGet]
-        public IEnumerable<ClassroomEquipment> Get()
+        public IEnumerable<ClassroomEquipment> Get() // API to Get Clasroom with Equipment
         {
             var classroomsWithEquipment = (from c in _db.Classrooms
                                            join ce in _db.Equipment on c.ClassroomId equals ce.ClassroomId

@@ -13,9 +13,7 @@ namespace ClassRoomManagementSystemServer.DTO;
         public string DepartmentName { get; set; } = null!;
 
         public string EquipmentType { get; set; } = null!;
-
-
-
+    
 }
 
 
