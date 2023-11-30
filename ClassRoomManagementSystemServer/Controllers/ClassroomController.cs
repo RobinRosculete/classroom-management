@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ClassRoomManagementSystemServer.Models;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -11,11 +12,17 @@ namespace ClassRoomManagementSystemServer.Controllers
     [Route("api/[controller]")]
     public class ClassroomController : Controller
     {
+        private readonly MydbContext _db;
+        public ClassroomController(MydbContext db)
+        {
+            _db = db;
+        }
+
         // GET: api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Classroom> Get()
         {
-            return new string[] { "value1", "value2" };
+            return _db.Classrooms.ToList();
         }
 
         // GET api/values/5
