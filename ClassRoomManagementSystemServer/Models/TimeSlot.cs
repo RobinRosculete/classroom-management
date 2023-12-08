@@ -7,7 +7,7 @@ public partial class TimeSlot
 {
     public int TimeSlotId { get; set; }
 
-    public DateOnly Day { get; set; }
+    public string Day { get; set; } = null!;
 
     public TimeOnly StartTime { get; set; }
 

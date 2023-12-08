@@ -21,7 +21,7 @@ public partial class MydbContext : DbContext
 
     public virtual DbSet<Department> Departments { get; set; }
 
- 
+    public virtual DbSet<Efmigrationshistory> Efmigrationshistories { get; set; }
 
     public virtual DbSet<Equipment> Equipment { get; set; }
 
@@ -87,7 +87,7 @@ public partial class MydbContext : DbContext
             entity.HasIndex(e => e.DepartmentName, "fk_Course_Department1_idx");
 
             entity.Property(e => e.CourseTitle)
-                .HasMaxLength(10)
+                .HasMaxLength(20)
                 .HasColumnName("course_title");
             entity.Property(e => e.Credits).HasColumnName("credits");
             entity.Property(e => e.DepartmentName)
@@ -117,7 +117,18 @@ public partial class MydbContext : DbContext
             entity.Property(e => e.NumClassroom).HasColumnName("num_classroom");
         });
 
-    
+        modelBuilder.Entity<Efmigrationshistory>(entity =>
+        {
+            entity.HasKey(e => e.MigrationId).HasName("PRIMARY");
+
+            entity
+                .ToTable("__efmigrationshistory")
+                .HasCharSet("utf8mb4")
+                .UseCollation("utf8mb4_0900_ai_ci");
+
+            entity.Property(e => e.MigrationId).HasMaxLength(150);
+            entity.Property(e => e.ProductVersion).HasMaxLength(32);
+        });
 
         modelBuilder.Entity<Equipment>(entity =>
         {
@@ -145,6 +156,7 @@ public partial class MydbContext : DbContext
 
             entity.HasOne(d => d.CourseTitleNavigation).WithMany(p => p.Equipment)
                 .HasForeignKey(d => d.CourseTitle)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("fk_Equipment_Course1");
         });
 
@@ -154,75 +166,73 @@ public partial class MydbContext : DbContext
 
             entity.ToTable("request");
 
+            entity.HasIndex(e => e.SectionId, "FK_Request_Section");
+
             entity.HasIndex(e => e.ClassroomId, "fk_Request_Classroom1_idx");
 
             entity.HasIndex(e => e.DepartmentName, "fk_Request_Department_idx");
 
             entity.Property(e => e.RequestId).HasColumnName("request_id");
             entity.Property(e => e.ClassroomId).HasColumnName("classroom_id");
+            entity.Property(e => e.Conflict)
+                .HasDefaultValueSql("'0'")
+                .HasColumnName("conflict");
             entity.Property(e => e.DepartmentName)
                 .HasMaxLength(45)
                 .HasColumnName("department_name");
-            entity.Property(e => e.Description)
-                .HasColumnType("text")
-                .HasColumnName("description");
+            entity.Property(e => e.SectionId).HasColumnName("section_id");
 
             entity.HasOne(d => d.Classroom).WithMany(p => p.Requests)
                 .HasForeignKey(d => d.ClassroomId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("fk_Request_Classroom1");
 
             entity.HasOne(d => d.DepartmentNameNavigation).WithMany(p => p.Requests)
                 .HasForeignKey(d => d.DepartmentName)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_Request_Department");
         });
 
         modelBuilder.Entity<Section>(entity =>
         {
-            entity.HasKey(e => new { e.SectionId, e.CourseTitle, e.Semester, e.Year, e.CourseCourseTitle })
+            entity.HasKey(e => new { e.SectionId, e.Semester, e.Year, e.CourseTitle })
                 .HasName("PRIMARY")
-                .HasAnnotation("MySql:IndexPrefixLength", new[] { 0, 0, 0, 0, 0 });
+                .HasAnnotation("MySql:IndexPrefixLength", new[] { 0, 0, 0, 0 });
 
             entity.ToTable("section");
 
             entity.HasIndex(e => e.ClassroomId, "fk_Section_Classroom1_idx");
 
-            entity.HasIndex(e => e.CourseCourseTitle, "fk_Section_Course1_idx");
+            entity.HasIndex(e => e.CourseTitle, "fk_Section_Course1_idx");
 
             entity.HasIndex(e => e.TimeSlotId, "fk_Section_Time_Slot1_idx");
+
+            entity.HasIndex(e => new { e.SectionId, e.CourseTitle, e.Year, e.Semester }, "idx_Section_primarykey");
 
             entity.Property(e => e.SectionId)
                 .ValueGeneratedOnAdd()
                 .HasColumnName("section_id");
-            entity.Property(e => e.CourseTitle)
-                .HasMaxLength(45)
-                .HasColumnName("course_title");
             entity.Property(e => e.Semester)
-                .HasMaxLength(45)
+                .HasMaxLength(20)
                 .HasColumnName("semester");
             entity.Property(e => e.Year)
-                .HasMaxLength(45)
+                .HasColumnType("year")
                 .HasColumnName("year");
-            entity.Property(e => e.CourseCourseTitle)
-                .HasMaxLength(10)
-                .HasColumnName("Course_course_title");
+            entity.Property(e => e.CourseTitle)
+                .HasMaxLength(20)
+                .HasColumnName("course_title");
             entity.Property(e => e.ClassroomId).HasColumnName("classroom_id");
             entity.Property(e => e.TimeSlotId).HasColumnName("time_slot_id");
 
             entity.HasOne(d => d.Classroom).WithMany(p => p.Sections)
                 .HasForeignKey(d => d.ClassroomId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_Section_Classroom1");
 
-            entity.HasOne(d => d.CourseCourseTitleNavigation).WithMany(p => p.Sections)
-                .HasForeignKey(d => d.CourseCourseTitle)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+            entity.HasOne(d => d.CourseTitleNavigation).WithMany(p => p.Sections)
+                .HasForeignKey(d => d.CourseTitle)
                 .HasConstraintName("fk_Section_Course1");
 
             entity.HasOne(d => d.TimeSlot).WithMany(p => p.Sections)
                 .HasForeignKey(d => d.TimeSlotId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_Section_Time_Slot1");
         });
 
@@ -233,7 +243,9 @@ public partial class MydbContext : DbContext
             entity.ToTable("time_slot");
 
             entity.Property(e => e.TimeSlotId).HasColumnName("time_slot_id");
-            entity.Property(e => e.Day).HasColumnName("day");
+            entity.Property(e => e.Day)
+                .HasMaxLength(3)
+                .HasColumnName("day");
             entity.Property(e => e.EndTime)
                 .HasColumnType("time")
                 .HasColumnName("end_time");
