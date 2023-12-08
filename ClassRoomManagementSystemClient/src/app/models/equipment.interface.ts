@@ -6,6 +6,6 @@ export interface Equipment {
   equipmentType: string;
   classroomClassroomId: number;
   courseCourseTitle: string;
-  classroomClassroom?: Classroom | null; // Assuming Classroom is another interface/model
-  courseCourseTitleNavigation?: Course | null; // Assuming Course is another interface/model
+  classroomClassroom?: Classroom | null;
+  courseCourseTitleNavigation?: Course | null;
 }

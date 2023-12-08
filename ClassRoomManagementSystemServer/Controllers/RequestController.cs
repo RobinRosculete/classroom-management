@@ -23,10 +23,35 @@ namespace ClassRoomManagementSystemServer.Controllers
         }
 
         // GET: api/values
-        [HttpGet]
-        public IEnumerable<string> Get()
+        [HttpGet("request-report")]
+        public IEnumerable<RoomAssignmentReport> GetRequestReport()
         {
-            return new string[] { "value1", "value2" };
+            var requestsReport = (from request in _db.Requests
+                                  join section in _db.Sections on request.SectionId equals section.SectionId
+                                  join time in _db.TimeSlots on section.TimeSlotId equals time.TimeSlotId
+                                  join course in _db.Courses on section.CourseTitle equals course.CourseTitle
+                                  join classroom in _db.Classrooms on section.ClassroomId equals classroom.ClassroomId
+                                  join department in _db.Departments on classroom.DepartmentName equals department.DepartmentName
+
+
+                                  select new RoomAssignmentReport
+                                  {
+                                      classroomDepartmentName = classroom.DepartmentName,
+                                      requestDepartmentName = request.DepartmentName,
+                                      BuildingName = department.BuildingName,
+                                      CourseTitle = section.CourseTitle,
+                                      SectionId = section.SectionId,
+                                      Year = section.Year,
+                                      Semester = section.Semester,
+                                      RoomNum = classroom.RoomNum,
+                                      Capacity = classroom.Capacity,
+                                      Day = time.Day,
+                                      StartTime = time.StartTime,
+                                      EndTime = time.EndTime
+
+                                  }).ToList();
+
+            return requestsReport;
         }
 
         // GET api/values/5

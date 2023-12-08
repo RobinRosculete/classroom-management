@@ -6,6 +6,6 @@ export interface Request {
   description: string;
   departmentName: string;
   classroomId: number;
-  classroomClassroom: Classroom | null; // Assuming Classroom is another interface/model
-  departmentDepartmentNameNavigation: Department | null; // Assuming Department is another interface/model
+  classroomClassroom: Classroom | null;
+  departmentDepartmentNameNavigation: Department | null;
 }

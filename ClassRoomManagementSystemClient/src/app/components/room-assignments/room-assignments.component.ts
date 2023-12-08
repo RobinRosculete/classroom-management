@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Department } from '../../models/department.interface';
+import { RoomAssignmentReport } from 'src/app/models/RoomAssignmentReport.interface';
 
 @Component({
   selector: 'app-room-assignments',
@@ -9,15 +9,19 @@ import { Department } from '../../models/department.interface';
   styleUrls: ['./room-assignments.component.css'],
 })
 export class RoomAssignmentsComponent {
-  department: Department[] = [];
+  roomAssignmentReport: RoomAssignmentReport[] = [];
   constructor(http: HttpClient) {
-    http.get<Department[]>(environment.apiUrl + '/Department').subscribe({
-      next: (result) => {
-        this.department = result;
-      },
-      error: (error) => {
-        console.error(error);
-      },
-    });
+    http
+      .get<RoomAssignmentReport[]>(
+        environment.apiUrl + '/Request/request-report'
+      )
+      .subscribe({
+        next: (result) => {
+          this.roomAssignmentReport = result;
+        },
+        error: (error) => {
+          console.error(error);
+        },
+      });
   }
 }
