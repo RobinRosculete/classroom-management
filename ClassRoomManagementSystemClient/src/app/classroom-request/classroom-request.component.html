@@ -1,1 +1,94 @@
 <h1>Submit classroom requests !</h1>
+<div class="container">
+  <div class="update-orders">
+    <div [formGroup]="form" (ngSubmit)="onSubmit()">
+      <!-- Day -->
+      <mat-form-field>
+        <mat-label>Day:</mat-label>
+        <input
+          matInput
+          formControlName="day"
+          required
+          placeholder="Enter day"
+        />
+      </mat-form-field>
+      <!-- Start Time -->
+      <mat-form-field>
+        <mat-label>Start Time:</mat-label>
+        <input
+          matInput
+          formControlName="startTime"
+          required
+          placeholder="Enter start time"
+        />
+      </mat-form-field>
+      <!-- End Time -->
+      <mat-form-field>
+        <mat-label>End Time:</mat-label>
+        <input
+          matInput
+          formControlName="endTime"
+          required
+          placeholder="Enter end time"
+        />
+      </mat-form-field>
+      <!-- Course Title -->
+      <mat-form-field>
+        <mat-label>Course Title:</mat-label>
+        <input
+          matInput
+          formControlName="courseTitle"
+          required
+          placeholder="Enter course title"
+        />
+      </mat-form-field>
+      <!-- Year -->
+      <mat-form-field>
+        <mat-label>Year:</mat-label>
+        <input
+          matInput
+          formControlName="year"
+          required
+          placeholder="Enter year"
+        />
+      </mat-form-field>
+      <!-- Semester -->
+      <mat-form-field>
+        <mat-label>Semester:</mat-label>
+        <input
+          matInput
+          formControlName="semester"
+          required
+          placeholder="Enter semester"
+        />
+      </mat-form-field>
+      <!-- Department Name -->
+      <mat-form-field>
+        <mat-label>Department Name:</mat-label>
+        <input
+          matInput
+          formControlName="departmentName"
+          required
+          placeholder="Enter department name"
+        />
+      </mat-form-field>
+      <div>
+        <button
+          mat-flat-button
+          color="primary"
+          type="submit"
+          (click)="onSubmit()"
+        >
+          Save
+        </button>
+        <button
+          mat-flat-button
+          color="secondary"
+          [routerLink]="['/view-section-requests']"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
