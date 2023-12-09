@@ -3,6 +3,7 @@ namespace ClassRoomManagementSystemServer.DTOs;
 public class RoomAssignmentReport
 	{
 
+    public int RequestId { get; set; }
     public string classroomDepartmentName { get; set; } = null!;
     public string requestDepartmentName { get; set; } = null!;
 

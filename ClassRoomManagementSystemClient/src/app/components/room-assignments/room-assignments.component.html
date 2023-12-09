@@ -17,6 +17,7 @@
       <!-- Table header -->
       <thead>
         <tr>
+          <th>Request ID</th>
           <th>Request Department Name</th>
           <th>Classroom Department Name</th>
           <th>Building Name</th>
@@ -35,6 +36,7 @@
       <tbody>
         <!-- Table rows -->
         <tr *ngFor="let report of roomAssignmentReport">
+          <td>{{ report.requestId }}</td>
           <td>{{ report.requestDepartmentName }}</td>
           <td>{{ report.classroomDepartmentName }}</td>
           <td>{{ report.buildingName }}</td>

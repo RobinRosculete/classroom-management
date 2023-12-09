@@ -1,40 +1,58 @@
-<html>
-  <head>
-    <!-- Other meta tags, title, etc. -->
+<div class="container">
+  <div class="update-orders">
+    <h1>Update Classroom Requests!</h1>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <!-- Request ID -->
+      <mat-form-field>
+        <mat-label>Request ID:</mat-label>
+        <input
+          matInput
+          formControlName="Id"
+          required
+          placeholder="Enter request ID"
+        />
+      </mat-form-field>
+      <!-- Day -->
+      <mat-form-field>
+        <mat-label>Day:</mat-label>
+        <input
+          matInput
+          formControlName="Day"
+          required
+          placeholder="Enter day"
+        />
+      </mat-form-field>
+      <!-- Start Time -->
+      <mat-form-field>
+        <mat-label>Start Time:</mat-label>
+        <input
+          matInput
+          formControlName="StartTime"
+          required
+          placeholder="Enter start time"
+        />
+      </mat-form-field>
+      <!-- End Time -->
+      <mat-form-field>
+        <mat-label>End Time:</mat-label>
+        <input
+          matInput
+          formControlName="EndTime"
+          required
+          placeholder="Enter end time"
+        />
+      </mat-form-field>
 
-    <!-- Link your custom CSS file -->
-    <link rel="stylesheet" href="update-requests.component.css" />
-  </head>
-  <body>
-    <!-- Your table -->
-    <h1>View Requests</h1>
-
-    <table
-      class="table table-striped"
-      aria-labelledby="tableLabel"
-      *ngIf="requests.length"
-    >
-      <!-- Table header -->
-      <thead>
-        <tr>
-          <th>Request ID</th>
-          <th>Description</th>
-          <th>Classroom ID</th>
-          <th>Department Name</th>
-        </tr>
-      </thead>
-      <!-- Table body -->
-      <tbody>
-        <!-- Table rows -->
-        <tr *ngFor="let request of requests">
-          <td>{{ request.requestId }}</td>
-          <td>{{ request.description }}</td>
-          <td>{{ request.classroomId }}</td>
-          <td>{{ request.departmentName }}</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <!-- Your other content -->
-  </body>
-</html>
+      <div>
+        <button mat-flat-button color="primary" type="submit">Save</button>
+        <button
+          mat-flat-button
+          color="secondary"
+          [routerLink]="['/room-assignments']"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

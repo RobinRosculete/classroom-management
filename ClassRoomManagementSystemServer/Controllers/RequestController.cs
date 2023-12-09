@@ -36,6 +36,7 @@ namespace ClassRoomManagementSystemServer.Controllers
 
                                   select new RoomAssignmentReport
                                   {
+                                      RequestId = request.RequestId,
                                       classroomDepartmentName = classroom.DepartmentName,
                                       requestDepartmentName = request.DepartmentName,
                                       BuildingName = department.BuildingName,
@@ -83,8 +84,18 @@ namespace ClassRoomManagementSystemServer.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody] UpdateRequest newRequest)
         {
+            // Assuming _db is your DbContext instance
+            var parameters = new[]
+            {
+            new MySqlParameter("@requestId", id),
+            new MySqlParameter("@DayOfWeek", newRequest.Day),
+            new MySqlParameter("@StartTime", newRequest.StartTime),
+            new MySqlParameter("@EndTime", newRequest.EndTime),
+        };
+
+            _db.Database.ExecuteSqlRaw("CALL UpdateRequest(@requestId,@DayOfWeek,@StartTime, @EndTime);", parameters);
         }
 
         // DELETE api/values/5

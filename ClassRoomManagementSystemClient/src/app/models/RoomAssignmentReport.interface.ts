@@ -1,4 +1,5 @@
 export interface RoomAssignmentReport {
+  requestId: number;
   classroomDepartmentName: string;
   requestDepartmentName: string;
   buildingName: string;

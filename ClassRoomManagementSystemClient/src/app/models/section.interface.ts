@@ -1,6 +1,6 @@
 import { Classroom } from './classroom.interface';
 import { Course } from './course.interface';
-import { TimeSlot } from './timeslot.interface';
+import { TimeSlot } from './newRequest.interface';
 
 export interface Section {
   sectionId: number;
