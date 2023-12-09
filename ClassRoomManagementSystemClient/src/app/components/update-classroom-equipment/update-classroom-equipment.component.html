@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="update-orders">
+    <h1>Update Blackout Hours!</h1>
+    <form [formGroup]="form1" (ngSubmit)="submitBlackoutHours()">
+      <!-- Form 1: Blackout Hours -->
+      <mat-form-field appearance="fill">
+        <mat-label>Room ID:</mat-label>
+        <input
+          matInput
+          formControlName="roomId"
+          required
+          placeholder="Enter Classroom ID"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Blackout Hours Start:</mat-label>
+        <input
+          matInput
+          formControlName="blackoutHoursStart"
+          required
+          placeholder="Enter Blackout Hours Start"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Blackout Hours End:</mat-label>
+        <input
+          matInput
+          formControlName="blackoutHoursEnd"
+          required
+          placeholder="Enter Blackout Hours End"
+        />
+      </mat-form-field>
+
+      <div>
+        <button mat-flat-button color="primary" type="submit">Save</button>
+        <button mat-flat-button color="secondary">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="update-orders">
+    <h1>Update Equipment!</h1>
+    <form [formGroup]="form2" (ngSubmit)="submitEquipmentType()">
+      <!-- Form 2: Equipment Type -->
+      <mat-form-field appearance="fill">
+        <mat-label>Equipment ID:</mat-label>
+        <input
+          matInput
+          formControlName="equipmentId"
+          required
+          placeholder="Enter Equipment ID"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Equipment Type:</mat-label>
+        <input
+          matInput
+          formControlName="equipmentType"
+          required
+          placeholder="Enter Equipment Type"
+        />
+      </mat-form-field>
+
+      <div>
+        <button mat-flat-button color="primary" type="submit">Save</button>
+        <button mat-flat-button color="secondary">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

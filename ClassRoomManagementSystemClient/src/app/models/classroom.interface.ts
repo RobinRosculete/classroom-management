@@ -1,4 +1,6 @@
 export interface Classroom {
+  roomID: number;
+  equipmentID: number;
   roomNum: number;
   capacity: number;
   blackoutHoursStart: string;

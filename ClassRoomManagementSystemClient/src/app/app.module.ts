@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { UpdateClassroomEquipmentComponent } from './components/update-classroom-equipment/update-classroom-equipment.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     RoomAssignmentsComponent,
     ClassroomRequestComponent,
     HomeComponent,
+    UpdateClassroomEquipmentComponent,
   ],
   imports: [
     BrowserModule,

@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 using ClassRoomManagementSystemServer.DTO;
+using MySqlConnector;
+using ClassRoomManagementSystemServer.DTOs;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ClassRoomManagementSystemServer.Controllers
@@ -27,6 +29,8 @@ namespace ClassRoomManagementSystemServer.Controllers
                                            join ce in _db.Equipment on c.ClassroomId equals ce.ClassroomId
                                            select new ClassroomEquipment()
                                            {
+                                               RoomID = c.ClassroomId,
+                                               EquipmentID = ce.EquipmentId,
                                                RoomNum = c.RoomNum,
                                                Capacity = c.Capacity,
                                                DepartmentName = c.DepartmentName,
@@ -51,10 +55,37 @@ namespace ClassRoomManagementSystemServer.Controllers
         {
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        // Api to update the classroom-blackout-hours
+        [HttpPut("update-classroom-blackout-hours/{roomID}")]
+        public void PutBlackoutHours(int roomID, [FromBody] UpdateBlackoutHours updateModel)
         {
+        
+               
+              var parameters = new[]
+                {
+                new MySqlParameter("@blackoutHoursStart", updateModel.BlackoutHoursStart),
+                new MySqlParameter("@blackoutHoursEnd", updateModel.BlackoutHoursEnd),
+                new MySqlParameter("@roomID", roomID)
+             };
+
+                _db.Database.ExecuteSqlRaw("UPDATE classroom SET blackout_hours_start = @blackoutHoursStart, blackout_hours_end = @blackoutHoursEnd WHERE classroom_id = @roomID", parameters);
+            
+  
+        }
+
+        // Api to update the equipment type in the database
+        [HttpPut("update-classroom-equipment/{equipmentID}")]
+        public void PutEquipment(int equipmentID, [FromBody] UpdateEquipment equipmentModel)
+        {
+
+            var parameters = new[]
+              {
+                new MySqlParameter("@equipmentType",equipmentModel.EquipmentType),
+                new MySqlParameter("@equipmentID", equipmentID)
+             };
+
+            _db.Database.ExecuteSqlRaw("UPDATE equipment SET equipment_type =@equipmentType WHERE equipment_id = @equipmentID;", parameters);
+
         }
 
         // DELETE api/values/5

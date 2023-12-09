@@ -1,4 +1,4 @@
-<h1>View/change room properties, such as blackout hours and equipment !</h1>
+<h1>View Rooms and Properties</h1>
 <html>
   <head> </head>
   <body>
@@ -10,6 +10,8 @@
       <!-- Table header -->
       <thead>
         <tr>
+          <th>Room ID</th>
+          <th>Equipment ID</th>
           <th>Room Number</th>
           <th>Capacity</th>
           <th>Start of Blackout Hours</th>
@@ -22,6 +24,8 @@
       <tbody>
         <!-- Table rows -->
         <tr *ngFor="let classromm of classromms">
+          <td>{{ classromm.roomID }}</td>
+          <td>{{ classromm.equipmentID }}</td>
           <td>{{ classromm.roomNum }}</td>
           <td>{{ classromm.capacity }}</td>
           <td>{{ classromm.blackoutHoursStart }}</td>

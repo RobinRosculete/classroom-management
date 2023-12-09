@@ -4,6 +4,7 @@ import { ClassroomRequestComponent } from './classroom-request/classroom-request
 import { RoomAssignmentsComponent } from './components/room-assignments/room-assignments.component';
 import { UpdateRequestsComponent } from './components/update-requests/update-requests.component';
 import { RoomPropertiesComponent } from './components/room-properties/room-properties.component';
+import { UpdateClassroomEquipmentComponent } from './components/update-classroom-equipment/update-classroom-equipment.component';
 
 import { RouterModule, Routes } from '@angular/router';
 
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'room-assignments', component: RoomAssignmentsComponent },
   { path: 'update-request', component: UpdateRequestsComponent },
   { path: 'room-properties', component: RoomPropertiesComponent },
+  { path: 'update-classroom', component: UpdateClassroomEquipmentComponent },
 ];
 
 @NgModule({

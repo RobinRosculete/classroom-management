@@ -2,6 +2,10 @@
 namespace ClassRoomManagementSystemServer.DTO;
 	public class ClassroomEquipment
 	{
+
+        public int RoomID { get; set; }
+        public int EquipmentID { get; set; }
+
         public int RoomNum { get; set; }
 
         public int Capacity { get; set; }
