@@ -11,6 +11,7 @@
 - [Development Documentation](#development-documentation)
 - [Database Implementation](#database-implementation)
 - [Stored Procedures](#stored-procedures)
+- [User Manual](#user-manual)
 
 ## Introduction
 
