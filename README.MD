@@ -33,6 +33,7 @@ _Figure 1: Classroom Management ER Diagram_
 
 The logical diagram details our project's relational database schema, focusing on logical relationships between different entities and their attributes. It specifies primary keys (PK) and foreign keys (FK), crucial for maintaining database integrity and consistency.
 
+![Relational Schema](https://github.com/RobinRosculete/classroom-management/blob/main/Readme%20Images/logical-design.png)
 _Figure 2: Classroom Management Relational Schema_
 
 ## System Design
@@ -43,11 +44,13 @@ Our classroom management system uses the Model View Controller (MVC) architectur
 - **Model:** Maps the database entities and handles requests and responses.
 - **Controller:** Manages HTTP requests from the view and applies system logic.
 
+![Architecture Design](https://github.com/RobinRosculete/classroom-management/blob/main/Readme%20Images/system-design.png)
+_Figure 3: Architecture Design Pattern_
 ## Deployment
 
 The application was deployed using Azure App Service and Azure Database for MySQL. The View server was hosted separately from the ASP.NET server, allowing users to access the system from various locations.
-
-_Figure 3: Classroom Management Deployment_
+![Deployment Diagram](https://github.com/RobinRosculete/classroom-management/blob/main/Readme%20Images/deployment-diagram.png)
+_Figure 4: Classroom Management Deployment_
 
 ## Development Documentation
 
