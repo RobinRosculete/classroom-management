@@ -2,7 +2,6 @@
 
 ## Table of Contents
 
-- [Introduction](#introduction)
 - [Project Description](#project-description)
 - [Conceptual Design](#conceptual-design)
 - [Logical Database Design](#logical-database-design)
@@ -12,10 +11,6 @@
 - [Database Implementation](#database-implementation)
 - [Stored Procedures](#stored-procedures)
 - [User Manual](#user-manual)
-
-## Introduction
-
-This project aims to enhance the management of classroom offerings through a robust database system, allowing efficient processing and archiving of all requests. Users can easily assign, modify, and oversee classroom allocations.
 
 ## Project Description
 
