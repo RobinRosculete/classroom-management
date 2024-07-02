@@ -97,3 +97,55 @@ _Figure 4: Classroom Management Deployment_
 - **FindAvailableClassroom:** Finds an available classroom for a section.
 - **GetSectionDetails:** Retrieves section details for classroom assignment.
 - **FindAvailableClassroomInDifferentDept:** Finds a classroom in a different department if none are available.
+
+## User Manual
+
+- **Video Demo:** [video demo](https://www.loom.com/share/4dd5ffbc227242ad8b1ff09744391446?sid=f1fc58aa-665d-4eb4-8800-7fd86d38cdc4) for more detailed guidance.)
+
+### How to Use
+
+Navigate throughout the application by using the navigation bar at the top of the page. Below are the main functionalities provided by the application:
+
+### Submit Classroom Requests Page
+
+- **Purpose:** Request a classroom.
+- **Instructions:**
+  1. Enter the following details:
+     - Day
+     - Start Time
+     - End Time
+     - Course Title
+     - Year
+     - Semester
+     - Department Name
+  2. Submit the form to request a classroom.
+
+### View Room Assignments Page
+
+- **Purpose:** View all rooms that have been reserved by request.
+- **Instructions:** Navigate to this page to see a list of all classroom reservations.
+
+### Modify Requests Page
+
+- **Purpose:** Update your classroom requests.
+- **Instructions:**
+  1. Select the request you want to update.
+  2. Modify the details as needed.
+  3. Submit the updated request.
+
+### View Room Properties Page
+
+- **Purpose:** View blackout hours and available equipment of the rooms.
+- **Instructions:** Navigate to this page to see detailed information about each room, including any blackout hours when the room is unavailable and the equipment available in the room.
+
+### Update Room Properties Page
+
+- **Purpose:** Update classroom blackout hours and equipment.
+- **Instructions:**
+  1. Select the room you want to update.
+  2. Modify the blackout hours or update the equipment details.
+  3. Save the changes.
+
+
+
+
