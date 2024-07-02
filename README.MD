@@ -26,7 +26,7 @@ Upon receiving a request from our stakeholder, we developed a database system to
 
 The entity-relationship (ER) diagram is a visual representation of the data model for our project. It outlines the structure of the database and the interrelations among its entities. Each entity represents a type of object within the system, and each relationship represents an association between these objects. Relationships are crucial for a relational database as they define how data in one table is related to data in another, allowing for complex queries and reports.
 
-
+![ER Diagram](https://github.com/RobinRosculete/classroom-management/blob/main/Readme%20Images/er-diagram.png)
 _Figure 1: Classroom Management ER Diagram_
 
 ## Logical Database Design
