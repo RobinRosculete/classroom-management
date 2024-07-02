@@ -18,13 +18,14 @@ This project aims to enhance the management of classroom offerings through a rob
 
 ## Project Description
 
-Upon receiving a request from our stakeholder, we developed a database system to enhance the management of their class offerings. This system efficiently processes and archives all requests within a centralized database, allowing users to effortlessly assign, modify, and oversee classroom allocations for their courses. Moreover, the class management system has been constructed on a client/server model to ensure a more streamlined user experience.
+Upon receiving a request from our stakeholder, we developed a database system to enhance the management of their class offerings. This system efficiently processes and archives all requests within a centralized database, allowing users to assign, modify, and oversee classroom allocations for their courses effortlessly. Moreover, the class management system has been constructed on a client/server model to ensure a more streamlined user experience.
 
 ## Conceptual Design
 
 ### Entity-Relationship (ER) Diagram
 
-Entity-Relationship (ER) diagram is a visual representation of the data model for our project. It outlines the structure of the database and the interrelations among its entities. Each entity represents a type of object within the system, and each relationship represents an association between these objects. Relationships are crucial for a relational database as they define how data in one table is related to data in another, allowing for complex queries and reports.
+The entity-relationship (ER) diagram is a visual representation of the data model for our project. It outlines the structure of the database and the interrelations among its entities. Each entity represents a type of object within the system, and each relationship represents an association between these objects. Relationships are crucial for a relational database as they define how data in one table is related to data in another, allowing for complex queries and reports.
+
 
 _Figure 1: Classroom Management ER Diagram_
 
