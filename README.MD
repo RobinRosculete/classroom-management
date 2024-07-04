@@ -96,11 +96,11 @@ _Figure 4: Classroom Management Deployment_
 
 ## User Manual
 
-- **Video Demo:** [video demo](https://www.loom.com/share/4dd5ffbc227242ad8b1ff09744391446?sid=f1fc58aa-665d-4eb4-8800-7fd86d38cdc4) for more detailed guidance.)
+- **Video Demo:** [video demo](https://www.loom.com/share/4dd5ffbc227242ad8b1ff09744391446?sid=f1fc58aa-665d-4eb4-8800-7fd86d38cdc4).
 
 ### How to Use
 
-Navigate throughout the application by using the navigation bar at the top of the page. Below are the main functionalities provided by the application:
+Navigate the application using the navigation bar at the top of the page. Below are the main functionalities provided by the application:
 
 ### Submit Classroom Requests Page
 
